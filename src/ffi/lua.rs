@@ -3,11 +3,11 @@ use libc::{c_int, c_uchar, c_schar, c_double, c_void, size_t, ptrdiff_t};
 use super::lauxlib::luaL_newstate;
 use std::ptr;
 
-pub const LUA_VERSION: &'static [c_uchar] = b"Lua 5.1\x00";
-pub const LUA_RELEASE: &'static [c_uchar] = b"Lua 5.1.4\x00";
+pub const LUA_VERSION: &[c_uchar] = b"Lua 5.1\x00";
+pub const LUA_RELEASE: &[c_uchar] = b"Lua 5.1.4\x00";
 pub const LUA_VERSION_NUM: c_int = 501;
 
-pub const LUA_SIGNATURE: &'static [c_uchar] = b"\033Lua\x00";
+pub const LUA_SIGNATURE: &[c_uchar] = b"\033Lua\x00";
 
 pub const LUA_MULTIRET: c_int = -1;
 
@@ -50,7 +50,7 @@ pub const LUA_TTHREAD: c_int = 8;
 
 pub const LUA_MINSTACK: c_int = 20;
 
-// These are constant in LuaJIT
+// These are constant in tinylj
 pub type lua_Number = c_double;
 pub type lua_Integer = ptrdiff_t;
 pub const LUA_IDSIZE: size_t = 60;
@@ -263,10 +263,10 @@ pub const LUA_HOOKLINE: c_int = 2;
 pub const LUA_HOOKCOUNT: c_int = 3;
 pub const LUA_HOOKTAILRET: c_int = 4;
 
-pub const LUA_MASKCALL: c_int = (1 << LUA_HOOKCALL);
-pub const LUA_MASKRET: c_int = (1 << LUA_HOOKRET);
-pub const LUA_MASKLINE: c_int = (1 << LUA_HOOKLINE);
-pub const LUA_MASKCOUNT: c_int = (1 << LUA_HOOKCOUNT);
+pub const LUA_MASKCALL: c_int = 1 << LUA_HOOKCALL;
+pub const LUA_MASKRET: c_int = 1 << LUA_HOOKRET;
+pub const LUA_MASKLINE: c_int = 1 << LUA_HOOKLINE;
+pub const LUA_MASKCOUNT: c_int = 1 << LUA_HOOKCOUNT;
 
 extern "C" {
     pub fn lua_setlevel(from: *mut lua_State, to: *mut lua_State);

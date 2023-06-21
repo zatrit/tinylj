@@ -1,3 +1,7 @@
 pub fn main() {
-    println!("cargo:rustc-link-lib=luajit-5.1");
+    println!("cargo:rerun-if-changed=build.rs");
+    let mut builder = luajit_src::Build::new();
+    builder.lua52compat(cfg!(feature = "lua52compat"));
+    let artifacts = builder.build();
+    artifacts.print_cargo_metadata();
 }

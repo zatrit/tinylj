@@ -1,6 +1,6 @@
-//! # LuaJIT RS
+//! # TinyLJ
 //! 
-//! `luajit_rs` is a simple wrapper around the LuaJIT project, allowing it to
+//! `tinylj` is a simple wrapper around the LuaJIT project, allowing it to
 //! be called from Rust easily and with minimal overhead. Most functions in this
 //! crate correspond directly to underlying Lua C API calls
 //! 
@@ -8,9 +8,9 @@
 //! 
 //! ```
 //! #[macro_use]
-//! extern crate luajit;
+//! extern crate tinylj;
 //!
-//! use luajit::{c_int, State};
+//! use tinylj::{c_int, State};
 //!
 //! fn return_42(state: &mut State) -> c_int {
 //!     state.push(42);
@@ -47,9 +47,7 @@ pub use libc::c_int;
 /// # Examples
 /// 
 /// ```
-/// #[macro_use] extern crate luajit;
-///
-/// use luajit::{State, c_int, ThreadStatus};
+/// use tinylj::{State, c_int, ThreadStatus, lua_fn};
 ///
 /// fn return_42(state: &mut State) -> c_int {
 ///     state.push(42);

@@ -1,7 +1,7 @@
-#[macro_use] extern crate luajit;
+#[macro_use] extern crate tinylj;
 
-use luajit::types::LuaObject;
-use luajit::{State, ffi, c_int, ThreadStatus};
+use tinylj::types::LuaObject;
+use tinylj::{State, ffi, c_int, ThreadStatus};
 
 struct Point2D {
     pub x: i32,

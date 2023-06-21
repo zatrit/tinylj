@@ -1,7 +1,7 @@
-#[macro_use] extern crate luajit;
+#[macro_use] extern crate tinylj;
 
-use luajit::{State, LuaObject};
-use luajit::ffi::luaL_Reg;
+use tinylj::{State, LuaObject};
+use tinylj::ffi::luaL_Reg;
 use std::path::Path;
 
 struct Point2D {

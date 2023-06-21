@@ -1,6 +1,8 @@
-# Luajit RS 
+# TinyLJ 
 
-[Documentation](https://dreae.gitlab.io/luajit-rs/luajit)
+[Github](https://github.com/zatrit/tinylj)
+
+Fork of [luajit-rs](https://dreae.gitlab.io/luajit-rs/luajit)
 
 Crate for interfacing with LuaJIT from Rust, for running high-performance Lua code that
 can integrate with native-code written in rust.
@@ -8,10 +10,7 @@ can integrate with native-code written in rust.
 ## Getting Started
 
 ```rust
-#[macro_use]
-extern crate luajit;
-
-use luajit::{c_int, State};
+use tinylj::{c_int, State, lua_fn};
 
 fn return_42(state: &mut State) -> c_int {
     state.push(42);

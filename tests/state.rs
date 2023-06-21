@@ -1,6 +1,6 @@
-extern crate luajit;
+extern crate tinylj;
 
-use luajit::{State, ThreadStatus};
+use tinylj::{State, ThreadStatus};
 
 #[test]
 fn do_valid_string() {

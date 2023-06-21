@@ -1,6 +1,6 @@
-#[macro_use] extern crate luajit;
+#[macro_use] extern crate tinylj;
 
-use luajit::{State, c_int, ThreadStatus};
+use tinylj::{State, c_int, ThreadStatus};
 
 fn return_42(state: &mut State) -> c_int {
     state.push(42);

@@ -1,15 +1,19 @@
 [package]
-name = "luajit"
+name = "tinylj"
 version = "0.1.1"
-authors = ["Dreae <dreae@dreae.onl>"]
+authors = ["Dreae <dreae@dreae.onl>", "zatrit"]
 build = "build.rs"
 description = "Rust crate for calling LuaJIT from Rust"
-documentation = "https://dreae.gitlab.io/luajit-rs/luajit/"
-repository = "https://gitlab.com/Dreae/luajit-rs"
+repository = "https://github.com/zatrit/tinylj/"
 readme = "README.md"
 keywords = ["luajit", "lua"]
-category = ["external-ffi-bindings", "embedded", "api-bindings"]
 license = "MIT"
 
 [dependencies]
 libc = "0.2.32"
+
+[build-dependencies]
+luajit-src = "210"
+
+[features]
+lua52compat = []
