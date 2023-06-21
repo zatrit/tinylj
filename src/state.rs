@@ -1,9 +1,9 @@
-#![allow(temporary_cstring_as_ptr)]
-use core::{ffi::CStr, ptr, mem};
+use core::{ffi::CStr, mem, ptr};
+use crate::ptr;
 
 use super::ffi::*;
 use alloc::{ffi::CString, string::String, borrow::ToOwned, vec::Vec};
-use libc::{c_int, c_void};
+use chlorine::{c_int, c_void};
 #[cfg(feature = "std")]
 use std::path::Path;
 
@@ -34,12 +34,6 @@ impl From<c_int> for ThreadStatus {
             _ => ThreadStatus::Unknown,
         }
     }
-}
-
-macro_rules! ptr {
-    ($name:expr) => {
-        CString::new($name).unwrap().as_ptr() as *const i8
-    };
 }
 
 pub struct State {
@@ -183,7 +177,7 @@ impl State {
     /// ```
     pub fn do_string(&mut self, s: &str) -> ThreadStatus {
         let cstr = CString::new(s).unwrap();
-        unsafe { luaL_dostring(self.state, cstr.as_ptr()).into() }
+        unsafe { luaL_dostring(self.state, cstr.as_ptr() as _).into() }
     }
 
     /// Maps to `lua_call`, calls the function on the top of the
@@ -262,7 +256,7 @@ impl State {
     pub fn register(&mut self, name: &str, f: LuaFunction) {
         let name = CString::new(name).unwrap();
         unsafe {
-            lua_register(self.state, name.as_ptr(), Some(f));
+            lua_register(self.state, name.as_ptr() as _, Some(f));
         }
     }
 
@@ -293,7 +287,7 @@ impl State {
         if ptr.is_null() {
             None
         } else {
-            let cstr = unsafe { CStr::from_ptr(ptr) };
+            let cstr = unsafe { CStr::from_ptr(ptr as _) };
 
             match cstr.to_str() {
                 Ok(s) => Some(s),

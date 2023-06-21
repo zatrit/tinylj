@@ -1,7 +1,7 @@
 #![allow(non_snake_case)]
-use libc::{c_int, c_schar, size_t, c_void};
+use chlorine::{c_int, c_schar, size_t, c_void};
 use super::lua::*;
-use core::ptr;
+use std::ptr;
 
 pub const LUA_ERRFILE: c_int = LUA_ERRERR + 1;
 pub const LUAL_BUFFERSIZE: size_t = 8192;

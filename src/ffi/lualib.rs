@@ -1,4 +1,4 @@
-use libc::{c_uchar, c_int};
+use chlorine::{c_uchar, c_int};
 use super::lua::lua_State;
 
 pub const LUA_FILEHANDLE: &[c_uchar] = b"FILE*\x00";

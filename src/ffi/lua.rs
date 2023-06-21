@@ -1,5 +1,5 @@
 #![allow(non_camel_case_types)]
-use libc::{c_int, c_uchar, c_schar, c_double, c_void, size_t, ptrdiff_t};
+use chlorine::{c_int, c_uchar, c_schar, c_double, c_void, size_t, ptrdiff_t};
 use super::lauxlib::luaL_newstate;
 use core::ptr;
 
@@ -222,7 +222,7 @@ pub unsafe fn lua_isnoneornil(state: *mut lua_State, n: c_int) -> bool {
 pub unsafe fn lua_pushliteral(state: *mut lua_State, s: &'static str) {
     use alloc::ffi::CString;
     let c_str = CString::new(s).unwrap();
-    lua_pushlstring(state, c_str.as_ptr(), s.as_bytes().len());
+    lua_pushlstring(state, c_str.as_ptr() as _, s.as_bytes().len());
 }
 
 #[inline(always)]
