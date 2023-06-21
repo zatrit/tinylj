@@ -1,9 +1,11 @@
 #![allow(temporary_cstring_as_ptr)]
+use core::{ffi::CStr, ptr, mem};
+
 use super::ffi::*;
+use alloc::{ffi::CString, string::String, borrow::ToOwned, vec::Vec};
 use libc::{c_int, c_void};
-use std::ffi::{CStr, CString};
+#[cfg(feature = "std")]
 use std::path::Path;
-use std::{mem, ptr};
 
 use super::types::{LuaFunction, LuaObject, LuaValue};
 
@@ -653,6 +655,7 @@ impl State {
         userdata
     }
 
+    #[cfg(feature = "std")]
     /// Maps to `luaL_loadfile`, this method validates that the file exists
     /// before passing it into the Lua C API.
     pub fn load_file(&mut self, path: &Path) -> Result<(), (ThreadStatus, String)> {
@@ -673,6 +676,7 @@ impl State {
         }
     }
 
+    #[cfg(feature = "std")]
     /// Equivalent of `luaL_dofile`, loads a file and then immediately executes
     /// it with `pcall`, returning the result.
     pub fn do_file(&mut self, path: &Path) -> Result<(), (ThreadStatus, String)> {

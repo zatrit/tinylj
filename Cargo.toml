@@ -1,6 +1,6 @@
 [package]
 name = "tinylj"
-version = "0.1.1"
+version = "0.1.2"
 authors = ["Dreae <dreae@dreae.onl>", "zatrit"]
 build = "build.rs"
 description = "Rust crate for calling LuaJIT from Rust"
@@ -16,4 +16,6 @@ libc = "0.2.32"
 luajit-src = "210"
 
 [features]
+default = ["std"]
 lua52compat = []
+std = []

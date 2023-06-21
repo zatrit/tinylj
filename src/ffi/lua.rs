@@ -1,7 +1,7 @@
 #![allow(non_camel_case_types)]
 use libc::{c_int, c_uchar, c_schar, c_double, c_void, size_t, ptrdiff_t};
 use super::lauxlib::luaL_newstate;
-use std::ptr;
+use core::ptr;
 
 pub const LUA_VERSION: &[c_uchar] = b"Lua 5.1\x00";
 pub const LUA_RELEASE: &[c_uchar] = b"Lua 5.1.4\x00";
@@ -220,7 +220,7 @@ pub unsafe fn lua_isnoneornil(state: *mut lua_State, n: c_int) -> bool {
 
 #[inline(always)]
 pub unsafe fn lua_pushliteral(state: *mut lua_State, s: &'static str) {
-    use std::ffi::CString;
+    use alloc::ffi::CString;
     let c_str = CString::new(s).unwrap();
     lua_pushlstring(state, c_str.as_ptr(), s.as_bytes().len());
 }

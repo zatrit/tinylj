@@ -1,6 +1,6 @@
 use super::ffi;
+use alloc::{ffi::CString, string::String, vec::Vec};
 use libc::{ptrdiff_t, c_int};
-use std::ffi::CString;
 use super::State;
 
 /// Represents any value that can be pushed onto the Lua stack

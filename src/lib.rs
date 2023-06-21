@@ -28,8 +28,12 @@
 //!     state.do_string(r#"print(return_42())"#);
 //! }
 //! ```
+#![cfg_attr(not(feature = "std"), no_std)]
 
 extern crate libc;
+extern crate alloc;
+#[cfg(feature = "std")]
+extern crate core;
 
 pub mod ffi;
 pub mod state;
